@@ -1,43 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace JSON_Record_Creator
 {
     public partial class Form1 : Form
     {
-        private string id;
-        private string lessonNumber;
-        private string englishTranslation;
+        private string _id;
+        private int _lessonNumber;
+        private string _englishTranslation;
 
-        private string chinese1;
-        private string romanized1;
-        private bool isImportant1;
+        private string _chinese1;
+        private string _romanized1;
+        private bool _isImportant1;
 
-        private string chinese2;
-        private string romanized2;
-        private bool isImportant2;
+        private string _chinese2;
+        private string _romanized2;
+        private bool _isImportant2;
 
-        private string chinese3;
-        private string romanized3;
-        private bool isImportant3;
+        private string _chinese3;
+        private string _romanized3;
+        private bool _isImportant3;
 
-        private string chinese4;
-        private string romanized4;
-        private bool isImportant4;
+        private string _chinese4;
+        private string _romanized4;
+        private bool _isImportant4;
 
-        private string chinese5;
-        private string romanized5;
-        private bool isImportant5;
-
-
+        private string _chinese5;
+        private string _romanized5;
+        private bool _isImportant5;
 
         private List<string> chineseList;
         private List<string> romanizedList;
@@ -45,13 +38,12 @@ namespace JSON_Record_Creator
         private List<string> mainGraphicsList;
         private List<string> strokePngList;
         private List<string> strokeAudioList;
- 
+
         private int strokes;
 
         private string audioPath = "audio/";
         private string imagePath = "images/";
-        private string characterAnimated = "character-animated/";
-
+        private string _characterAnimated = "character-animated/";
 
         public Form1()
         {
@@ -60,63 +52,64 @@ namespace JSON_Record_Creator
 
         private void Id_textBox_TextChanged(object sender, EventArgs e)
         {
-            id = id_textBox.Text;
+            _id = id_textBox.Text;
         }
+
         private void BuildChineseList()
+        {
+            chineseList = new List<string>();
+            if (_chinese1 != null)
             {
-                chineseList = new List<string>();
-                if (chinese1 != null)
-                {
-                    chineseList.Add(chinese1);
-                }
-
-                if (chinese2 != null)
-                {
-                    chineseList.Add(chinese2);
-                }
-
-                if (chinese3 != null)
-                {
-                    chineseList.Add(chinese3);
-                }
-
-                if (chinese4 != null)
-                {
-                    chineseList.Add(chinese4);
-                }
-
-                if (chinese5 != null)
-                {
-                    chineseList.Add(chinese5);
-                }
+                chineseList.Add(_chinese1);
             }
+
+            if (_chinese2 != null)
+            {
+                chineseList.Add(_chinese2);
+            }
+
+            if (_chinese3 != null)
+            {
+                chineseList.Add(_chinese3);
+            }
+
+            if (_chinese4 != null)
+            {
+                chineseList.Add(_chinese4);
+            }
+
+            if (_chinese5 != null)
+            {
+                chineseList.Add(_chinese5);
+            }
+        }
 
         private void BuildRomanizedList()
         {
             romanizedList = new List<string>();
-            if (romanized1 != null)
+            if (_romanized1 != null)
             {
-                romanizedList.Add(romanized1);
+                romanizedList.Add(_romanized1);
             }
 
-            if (romanized2 != null)
+            if (_romanized2 != null)
             {
-                romanizedList.Add(romanized2);
+                romanizedList.Add(_romanized2);
             }
 
-            if (romanized3 != null)
+            if (_romanized3 != null)
             {
-                romanizedList.Add(romanized3);
+                romanizedList.Add(_romanized3);
             }
 
-            if (romanized4 != null)
+            if (_romanized4 != null)
             {
-                romanizedList.Add(romanized4);
+                romanizedList.Add(_romanized4);
             }
 
-            if (romanized5 != null)
+            if (_romanized5 != null)
             {
-                romanizedList.Add(romanized5);
+                romanizedList.Add(_romanized5);
             }
         }
 
@@ -147,22 +140,21 @@ namespace JSON_Record_Creator
 
         private void BuildMainGraphicsList()
         {
-            string[] suffix = new[] {"-a", "-b", "-c","-d","-e"};
+            string[] suffix = new[] { "-a", "-b", "-c", "-d", "-e" };
             mainGraphicsList = new List<string>();
             if (chineseList.Count > 1)
             {
                 for (int i = 0; i < chineseList.Count; i++)
                 {
-                    string path = imagePath + id + suffix[i] + ".png";
+                    string path = imagePath + _id + suffix[i] + ".png";
                     mainGraphicsList.Add(path);
                 }
             }
             else
             {
-                string path = imagePath + id + ".png";
+                string path = imagePath + _id + ".png";
                 mainGraphicsList.Add(path);
             }
-
         }
 
         private void BuildStrokePngList()
@@ -175,7 +167,7 @@ namespace JSON_Record_Creator
             strokePngList = new List<string>();
             for (int i = 0; i < strokes; i++)
             {
-                string path = imagePath + id + "-" + ints[i] + ".png";
+                string path = imagePath + _id + "-" + ints[i] + ".png";
                 strokePngList.Add(path);
             }
         }
@@ -183,10 +175,7 @@ namespace JSON_Record_Creator
         private void BuildStrokeAudioList()
         {
             string[] ints = new[]
-            {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17",
-                "18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
-                "28", "29", "30","31", "32", "33", "34", "35", "36", "37",
-                "38", "39", "40"};
+            {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30","31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
             strokeAudioList = new List<string>();
             for (int i = 0; i < strokes; i++)
             {
@@ -203,10 +192,10 @@ namespace JSON_Record_Creator
             {
                 folderPath = folderBrowserDialog1.SelectedPath;
             }
-            Directory.CreateDirectory(folderPath + "\\" + id);
-            Directory.CreateDirectory(folderPath + "\\" + id + "\\audio");
-            Directory.CreateDirectory(folderPath + "\\" + id + "\\images");
-            Directory.CreateDirectory(folderPath + "\\" + id + "\\animation");
+            Directory.CreateDirectory(folderPath + "\\" + _id);
+            Directory.CreateDirectory(folderPath + "\\" + _id + "\\audio");
+            Directory.CreateDirectory(folderPath + "\\" + _id + "\\images");
+            Directory.CreateDirectory(folderPath + "\\" + _id + "\\animation");
             MessageBox.Show(folderPath);
             BuildChineseList();
             BuildRomanizedList();
@@ -214,16 +203,34 @@ namespace JSON_Record_Creator
             BuildMainGraphicsList();
             BuildStrokePngList();
             BuildStrokeAudioList();
+
+            ChineseCharacter character = new ChineseCharacter
+            {
+                id = _id,
+                chinese = chineseList,
+                romanized = romanizedList,
+                importantCharacters = importantCharacterList,
+                englishTranslation = englishTranslation_textBox.Text,
+                mainGraphics = mainGraphicsList,
+                strokeAudio = strokeAudioList,
+                strokePng = strokePngList,
+                characterAnimated = _characterAnimated
+
+            };
+
+            string json = JsonConvert.SerializeObject(character, Formatting.Indented);
+            string jsonPath = folderPath + "\\" + _id + "\\" + _id + ".json";
+            File.WriteAllText(jsonPath, json);
         }
 
         private void Lesson_textBox_TextChanged(object sender, EventArgs e)
         {
-            lessonNumber = lesson_textBox.Text;
+            _lessonNumber = Convert.ToInt32(lesson_textBox.Text);
         }
 
         private void EnglishTranslation_textBox_TextChanged(object sender, EventArgs e)
         {
-            englishTranslation = englishTranslation_textBox.Text;
+            _englishTranslation = englishTranslation_textBox.Text;
         }
 
         private void NumStrokes_textBox_TextChanged(object sender, EventArgs e)
@@ -233,53 +240,52 @@ namespace JSON_Record_Creator
 
         private void ChineseCharacter1_textBox_TextChanged(object sender, EventArgs e)
         {
-            chinese1 = chineseCharacter1_textBox.Text;
+            _chinese1 = chineseCharacter1_textBox.Text;
         }
 
         private void ChineseCharacter2_textBox_TextChanged(object sender, EventArgs e)
         {
-            chinese2 = chineseCharacter2_textBox.Text;
+            _chinese2 = chineseCharacter2_textBox.Text;
         }
 
         private void ChineseCharacter3_textBox_TextChanged(object sender, EventArgs e)
         {
-            chinese3 = chineseCharacter3_textBox.Text;
+            _chinese3 = chineseCharacter3_textBox.Text;
         }
 
         private void ChineseCharacter4_textBox_TextChanged(object sender, EventArgs e)
         {
-            chinese4 = chineseCharacter4_textBox.Text;
+            _chinese4 = chineseCharacter4_textBox.Text;
         }
 
         private void ChineseCharacter5_textBox_TextChanged(object sender, EventArgs e)
         {
-            chinese5 = chineseCharacter5_textBox.Text;
+            _chinese5 = chineseCharacter5_textBox.Text;
         }
 
         private void RomanizedCharacter1_textBox_TextChanged(object sender, EventArgs e)
         {
-            romanized1 = romanizedCharacter1_textBox.Text;
+            _romanized1 = romanizedCharacter1_textBox.Text;
         }
 
         private void RomanizedCharacter2_textBox_TextChanged(object sender, EventArgs e)
         {
-            romanized2 = romanizedCharacter2_textBox.Text;
+            _romanized2 = romanizedCharacter2_textBox.Text;
         }
 
         private void RomanizedCharacter3_textBox_TextChanged(object sender, EventArgs e)
         {
-            romanized3 = romanizedCharacter3_textBox.Text;
+            _romanized3 = romanizedCharacter3_textBox.Text;
         }
 
         private void RomanizedCharacter4_textBox_TextChanged(object sender, EventArgs e)
         {
-            romanized4 = romanizedCharacter4_textBox.Text;
+            _romanized4 = romanizedCharacter4_textBox.Text;
         }
 
         private void RomanizedCharacter5_textBox_TextChanged(object sender, EventArgs e)
         {
-            romanized5 = romanizedCharacter5_textBox.Text;
+            _romanized5 = romanizedCharacter5_textBox.Text;
         }
-
     }
 }
