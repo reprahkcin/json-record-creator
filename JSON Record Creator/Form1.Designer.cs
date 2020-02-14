@@ -152,6 +152,7 @@
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.isImportant1_chk);
@@ -174,6 +175,7 @@
             // 
             // panel2
             // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.isImportant2_chk);
@@ -240,6 +242,7 @@
             // 
             // panel3
             // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.isImportant3_chk);
@@ -306,6 +309,7 @@
             // 
             // panel4
             // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.label10);
             this.panel4.Controls.Add(this.label11);
             this.panel4.Controls.Add(this.isImportant4_chk);
@@ -372,6 +376,7 @@
             // 
             // panel5
             // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel5.Controls.Add(this.label13);
             this.panel5.Controls.Add(this.label14);
             this.panel5.Controls.Add(this.isImportant5_chk);
@@ -507,7 +512,7 @@
             this.Controls.Add(this.id_lbl);
             this.Controls.Add(this.createJSON_btn);
             this.Name = "Form1";
-            this.Text = "Chinese Vocabulary JSON Generator";
+            this.Text = "詞彙 Chinese Vocabulary JSON Generator";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

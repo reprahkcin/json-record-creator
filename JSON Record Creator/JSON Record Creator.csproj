@@ -36,6 +36,12 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PainlessHttp, Version=0.10.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\PainlessHttp.0.11.2\lib\net451\PainlessHttp.dll</HintPath>
+    </Reference>
+    <Reference Include="PainlessHttp.Serializer.JsonNet, Version=0.10.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Painless.Serializer.JsonNet.0.11.1\lib\net451\PainlessHttp.Serializer.JsonNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
