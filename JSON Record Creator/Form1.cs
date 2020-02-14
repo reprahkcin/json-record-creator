@@ -9,6 +9,7 @@ namespace JSON_Record_Creator
 {
     public partial class Form1 : Form
     {
+        private string persistentPath;
         private string _id;
         private int _lessonNumber;
         private string _englishTranslation;
@@ -45,6 +46,47 @@ namespace JSON_Record_Creator
         private string audioPath = "audio/";
         private string imagePath = "images/";
         private string _characterAnimated = "character-animated/";
+
+        private void ClearAll()
+        {
+            id_textBox.Text = null;
+            _id = null;
+            lesson_textBox.Text = null;
+            _lessonNumber = 0;
+            englishTranslation_textBox.Text = null;
+            _englishTranslation = null;
+            chineseCharacter1_textBox.Text = null;
+            _chinese1 = null;
+            chineseCharacter2_textBox.Text = null;
+            _chinese2 = null;
+            chineseCharacter3_textBox.Text = null;
+            _chinese3 = null;
+            chineseCharacter4_textBox.Text = null;
+            _chinese4 = null;
+            chineseCharacter5_textBox.Text = null;
+            _chinese5 = null;
+            romanizedCharacter1_textBox.Text = null;
+            _romanized1 = null;
+            romanizedCharacter2_textBox.Text = null;
+            _romanized2 = null;
+            romanizedCharacter3_textBox.Text = null;
+            _romanized3 = null;
+            romanizedCharacter4_textBox.Text = null;
+            _romanized4 = null;
+            romanizedCharacter5_textBox.Text = null;
+            _romanized5 = null;
+            isImportant1_chk.CheckState = CheckState.Unchecked;
+            _isImportant1 = false;
+            isImportant2_chk.CheckState = CheckState.Unchecked;
+            _isImportant2 = false;
+            isImportant3_chk.CheckState = CheckState.Unchecked;
+            _isImportant3 = false;
+            isImportant4_chk.CheckState = CheckState.Unchecked;
+            _isImportant4 = false;
+            isImportant5_chk.CheckState = CheckState.Unchecked;
+            _isImportant5 = false;
+            
+        }
 
         public Form1()
         {
@@ -192,6 +234,7 @@ namespace JSON_Record_Creator
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 folderPath = folderBrowserDialog1.SelectedPath;
+                persistentPath = folderPath;
             }
             Directory.CreateDirectory(folderPath + "\\" + _id);
             Directory.CreateDirectory(folderPath + "\\" + _id + "\\audio");
@@ -287,6 +330,11 @@ namespace JSON_Record_Creator
         private void RomanizedCharacter5_textBox_TextChanged(object sender, EventArgs e)
         {
             _romanized5 = romanizedCharacter5_textBox.Text;
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            ClearAll();
         }
     }
 }

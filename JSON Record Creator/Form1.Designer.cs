@@ -72,6 +72,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.numStrokes_textBox = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -492,11 +493,22 @@
             this.label18.TabIndex = 15;
             this.label18.Text = "# of Strokes";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(397, 249);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(121, 42);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Clear All";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(660, 305);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.numStrokes_textBox);
             this.Controls.Add(this.label17);
@@ -574,6 +586,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox numStrokes_textBox;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button button1;
     }
 }
 
