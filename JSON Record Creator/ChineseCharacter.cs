@@ -13,5 +13,7 @@ namespace JSON_Record_Creator
         public List<string> strokeAudio { get; set; }
         public List<string> strokePng { get; set; }
         public string characterAnimated { get; set; }
+        public string phraseAudio { get; set; }
+        public string wordAudio { get; set; }
     }
 }

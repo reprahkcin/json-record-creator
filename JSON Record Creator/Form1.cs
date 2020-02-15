@@ -11,7 +11,6 @@ namespace JSON_Record_Creator
     {
         private string persistentPath;
         private string _id;
-        private int _lessonNumber;
         private string _englishTranslation;
 
         private string _chinese1;
@@ -41,7 +40,7 @@ namespace JSON_Record_Creator
         private List<string> strokePngList;
         private List<string> strokeAudioList;
 
-        private int strokes;
+        private string strokes;
 
         private string audioPath = "audio/";
         private string imagePath = "images/";
@@ -51,8 +50,7 @@ namespace JSON_Record_Creator
         {
             id_textBox.Text = null;
             _id = null;
-            lesson_textBox.Text = null;
-            _lessonNumber = 0;
+
             englishTranslation_textBox.Text = null;
             _englishTranslation = null;
             chineseCharacter1_textBox.Text = null;
@@ -85,7 +83,7 @@ namespace JSON_Record_Creator
             _isImportant4 = false;
             isImportant5_chk.CheckState = CheckState.Unchecked;
             _isImportant5 = false;
-            
+
         }
 
         public Form1()
@@ -208,7 +206,7 @@ namespace JSON_Record_Creator
                 "28", "29", "30","31", "32", "33", "34", "35", "36", "37",
                 "38", "39", "40"};
             strokePngList = new List<string>();
-            for (int i = 0; i < strokes; i++)
+            for (int i = 0; i < Convert.ToInt32(strokes); i++)
             {
                 string path = imagePath + _id + "-" + ints[i] + ".png";
                 strokePngList.Add(path);
@@ -220,7 +218,7 @@ namespace JSON_Record_Creator
             string[] ints = new[]
             {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30","31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
             strokeAudioList = new List<string>();
-            for (int i = 0; i < strokes; i++)
+            for (int i = 0; i < Convert.ToInt32(strokes); i++)
             {
                 string path = audioPath + ints[i] + ".mp3";
                 strokeAudioList.Add(path);
@@ -258,7 +256,9 @@ namespace JSON_Record_Creator
                 mainGraphics = mainGraphicsList,
                 strokeAudio = strokeAudioList,
                 strokePng = strokePngList,
-                characterAnimated = _characterAnimated
+                characterAnimated = _characterAnimated,
+                phraseAudio = "audio/phrase.mp3",
+                wordAudio = "audio/word.mp3"
 
             };
 
@@ -267,10 +267,7 @@ namespace JSON_Record_Creator
             File.WriteAllText(jsonPath, json);
         }
 
-        private void Lesson_textBox_TextChanged(object sender, EventArgs e)
-        {
-            _lessonNumber = Convert.ToInt32(lesson_textBox.Text);
-        }
+
 
         private void EnglishTranslation_textBox_TextChanged(object sender, EventArgs e)
         {
@@ -279,7 +276,8 @@ namespace JSON_Record_Creator
 
         private void NumStrokes_textBox_TextChanged(object sender, EventArgs e)
         {
-            strokes = Convert.ToInt32(numStrokes_textBox.Text);
+
+            strokes = numStrokes_textBox.Text;
         }
 
         private void ChineseCharacter1_textBox_TextChanged(object sender, EventArgs e)
@@ -334,7 +332,13 @@ namespace JSON_Record_Creator
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            ClearAll();
+            Utilities.ResetAllControls(this);
+            Utilities.ResetAllControls(panel1);
+            Utilities.ResetAllControls(panel2);
+            Utilities.ResetAllControls(panel3);
+            Utilities.ResetAllControls(panel4);
+            Utilities.ResetAllControls(panel5);
+
         }
     }
 }
